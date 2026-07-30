@@ -1,7 +1,7 @@
 # BREADTH-FIRST-SEARCH
 <h1>ExpNo 3 : Implement Breadth First Search Traversal of a Graph</h1> 
-<h3>Name:  </h3>
-<h3>Register Number: </h3>
+<h3>Name: Karthik Ganesh G </h3>
+<h3>Register Number: 212223223003</h3>
 <H3>Aim:</H3>
 <p>To Implement Breadth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -107,6 +107,81 @@ G F <BR>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Breadth First Search for the same graph was done successfully.</p>
 
+## Program:
+```
+from collections import deque
+from collections import defaultdict
+
+# BFS Function
+def bfs(graph, start, visited, path):
+    queue = deque()
+
+    # Mark starting node as visited
+    visited[start] = True
+    queue.append(start)
+    path.append(start)
+
+    while queue:
+        # Remove node from front of queue
+        node = queue.popleft()
+
+        # Visit all adjacent nodes
+        for neighbour in graph[node]:
+            if not visited[neighbour]:
+                visited[neighbour] = True
+                queue.append(neighbour)
+                path.append(neighbour)
+
+    return path
+
+
+# Create graph using adjacency list
+graph = defaultdict(list)
+
+# Input number of nodes and edges
+v, e = map(int, input("Enter the number of nodes and edges: ").split())
+
+print("\nEnter the edges (Adjacent Nodes):")
+
+# Input edges
+for i in range(e):
+    u, w = input(f"Edge {i+1} (u v): ").split()
+
+    # Undirected graph
+    graph[u].append(w)
+    graph[w].append(u)
+
+
+# Display adjacency list
+print("\nAdjacency List:")
+for node in graph:
+    print(node, "->", graph[node])
+
+
+# Input starting node
+start = input("\nEnter the start node for BFS: ")
+
+
+# Check start node validity
+if start not in graph:
+    print("Invalid start node!")
+else:
+    visited = defaultdict(bool)
+    path = []
+
+    # Perform BFS traversal
+    traversedpath = bfs(graph, start, visited, path)
+
+    # Display BFS result
+    print("\nBFS Traversal:", " -> ".join(traversedpath))
+
+```
+
+## Output:
+<img width="728" height="410" alt="image" src="https://github.com/user-attachments/assets/f4672a50-7364-4736-818f-cac3933fdb56" />
+
+## Result:
+<p>Thus the above program was executed successfully and the output is verified</p> 
 
 
 
